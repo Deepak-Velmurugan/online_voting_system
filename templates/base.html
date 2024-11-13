@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Voting System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            
+            {% if session.get('logged_in') %}
+                <li><a href="{{ url_for('statistics_overview') }}">View Election Statistics</a></li>
+                <li><a href="{{ url_for('vote') }}">Vote</a></li>
+                
+                {% if session.get('is_admin') %}
+                    <li><a href="{{ url_for('admin_dashboard') }}">Admin Dashboard</a></li>
+                {% endif %}
+                
+                {% if session.get('user_role') == 'manager' %}
+                    <li><a href="{{ url_for('manager_dashboard') }}">Manager Dashboard</a></li>
+                {% endif %}
+                
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% else %}
+                <li><a href="{{ url_for('register') }}">Register</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
+    <div class="container">
+        
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <ul class="flashes">
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        {% block content %}
+            <h1>Welcome to the Online Voting System</h1>
+            <p>This is your platform to participate in elections and view results.</p>
+            <p>Make your voice heard by casting your vote today!</p>
+            <h3>ABOUT US</h3>
+            <strong>Team members:</strong>
+            <p>Deepak Velmurugan -- PES2UG22CS639</p>
+            <p>Vedant Singh -- PES2UG22CS654</p>
+        {% endblock %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Election Results</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Election Name</th>
+                <th>Candidate Name</th>
+                <th>Total Votes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in election_results %}
+                <tr>
+                    <td>{{ row['election_name'] }}</td>
+                    <td>{{ row['candidate_name'] }}</td>
+                    <td>{{ row['total_votes'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    <a href="{{ url_for('statistics') }}">Back to Statistics Overview</a>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Update Election</h2>
+<p>Welcome, {{ session.get('username') }}!</p>
+
+<form method="POST" action="{{ url_for('update_election', election_id=election['elections_id']) }}">
+    <div>
+        <label for="election_name">Election Name</label>
+        <!-- Change from dropdown to text input -->
+        <input type="text" name="election_name" id="election_name" value="{{ election['election_topic'] }}" required>
+    </div>
+
+    <div>
+        <label for="starting_date">Starting Date</label>
+        <input type="date" name="starting_date" id="starting_date" value="{{ election['starting_date'] }}" required>
+    </div>
+
+    <div>
+        <label for="ending_date">Ending Date</label>
+        <input type="date" name="ending_date" id="ending_date" value="{{ election['ending_date'] }}" required>
+    </div>
+
+    <div>
+        <label for="status">Status</label>
+        <select name="status" id="status">
+            <option value="Upcoming" {% if status == 'Upcoming' %}selected{% endif %}>Upcoming</option>
+            <option value="Ongoing" {% if status == 'Ongoing' %}selected{% endif %}>Ongoing</option>
+            <option value="Completed" {% if status == 'Completed' %}selected{% endif %}>Completed</option>
+        </select>
+    </div>
+
+    <div>
+        <button type="submit">Update Election</button>
+    </div>
+</form>
+
+{% endblock %}

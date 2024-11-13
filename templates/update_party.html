@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Update Party</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    <!-- Display any flash messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <div>
+        <label for="party_name">Party Name:</label>
+        <input type="text" id="party_name" name="party_name" value="{{ party['party_name'] }}" required>
+    </div>
+
+    <div>
+        <label for="party_logo">Party Logo:</label>
+        <input type="file" id="party_logo" name="party_logo">
+        <p>Current Logo: 
+            {% if party['logo'] %}
+                <img src="{{ url_for('static', filename='uploads/party_logos/' + party['party_logo']) }}" alt="Party Logo" width="100">
+            {% else %}
+                No logo available
+            {% endif %}
+        </p>
+    </div>
+
+    <div>
+        <button type="submit">Update Party</button>
+    </div>
+</form>
+
+<a href="{{ url_for('manage_parties') }}">Back to Party Management</a>
+{% endblock %}

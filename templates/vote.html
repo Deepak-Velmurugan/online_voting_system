@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Vote for Your Candidate</h2>
+
+{% if elections %}
+    <form method="POST" action="{{ url_for('vote') }}">
+        <label for="election_id">Select Election:</label>
+        <select id="election_id" name="election_id" required onchange="updateCandidates()">
+            <option value="">Select an election</option>
+            {% for election in elections %}
+                <option value="{{ election.elections_id }}">{{ election.Election_topic }}</option>
+            {% endfor %}
+        </select>
+        
+        <label for="candidate_id">Select Candidate:</label>
+        <select id="candidate_id" name="candidate_id" required>
+            <option value="">Select a candidate</option>
+        </select>
+        
+        <button type="submit">Submit Vote</button>
+    </form>
+
+    <!-- Ensure the data is safely serialized for JavaScript -->
+    <script type="text/javascript">
+        // Serialize the data correctly for JavaScript using safe filter
+        const allCandidates = JSON.parse('{{ all_candidates | tojson | safe }}');
+
+        function updateCandidates() {
+            const electionSelect = document.getElementById('election_id');
+            const candidateSelect = document.getElementById('candidate_id');
+            const selectedElectionId = electionSelect.value;
+            
+            // Clear current candidate options
+            candidateSelect.innerHTML = '<option value="">Select a candidate</option>';
+            
+            // Filter candidates based on the selected election
+            const filteredCandidates = allCandidates.filter(candidate => candidate.election_id == selectedElectionId);
+            
+            // Populate candidate options
+            filteredCandidates.forEach(candidate => {
+                const option = document.createElement('option');
+                option.value = candidate.candidate_id;
+                option.textContent = candidate.candidate_name;
+                candidateSelect.appendChild(option);
+            });
+        }
+    </script>
+{% else %}
+    <p>No upcoming elections are available at the moment.</p>
+{% endif %}
+
+{% endblock %}

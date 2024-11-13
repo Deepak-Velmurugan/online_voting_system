@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Admin Dashboard</h2>
+<p>Welcome, {{ session.get('username') }}!</p>
+
+<div>
+    <h3>Manage Elections</h3>
+    <p><a href="{{ url_for('manage_elections') }}">View and Manage Elections</a></p>
+</div>
+
+<div>
+    <h3>Manage Candidates</h3>
+    <p><a href="{{ url_for('manage_candidates') }}">View and Manage Candidates</a></p>
+</div>
+
+<div>
+    <h3>Manage Parties</h3>
+    <p><a href="{{ url_for('manage_parties') }}">View and Manage Parties</a></p>
+</div>
+
+<div>
+    <h3>Manage System</h3>
+    <p><a href="{{ url_for('create_manager') }}">Create manager</a></p>
+    <p><a href="{{ url_for('assign_election') }}">View and Manage managers</a></p>
+</div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Statistics Overview</h1>
+    
+    <p><strong>Total Number of Candidates:</strong> {{ total_candidates }}</p>
+    <p><strong>Total Number of Parties:</strong> {{ total_parties }}</p>
+    <h2>Election Overview with Candidate Counts</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Election ID</th>
+                <th>Election Topic</th>
+                <th>Starting Date</th>
+                <th>Ending Date</th>
+                <th>Candidate Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for election in elections_with_candidates %}
+                <tr>
+                    <td>{{ election['elections_id'] }}</td>
+                    <td>{{ election['election_topic'] }}</td>
+                    <td>{{ election['starting_date'] }}</td>
+                    <td>{{ election['ending_date'] }}</td>
+                    <td>{{ election['candidate_count'] }}</td>
+                </tr>
+            {% endfor %}
+        <</tbody>
+    </table>            
+
+    <h2>Total Votes by Party</h2>
+    <ul>
+        {% for item in votes_by_party %}
+            <li>Party: {{ item.party_name }} (ID: {{ item.party_id }}) - {{ item.votes }} votes</li>
+        {% endfor %}
+    </ul>
+
+
+    <h2>Top Candidates in Each Election</h2>
+    <ul>
+        {% for item in top_candidates %}
+            <li><strong>Election_name:</strong> {{ item.election_topic }} | candidate: {{ item.top_candidates }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

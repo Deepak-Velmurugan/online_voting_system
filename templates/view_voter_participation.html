@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Voter Participation for Election ID: {{ election_id }}</h2>
+
+{% if voters %}
+<table>
+    <thead>
+        <tr>
+            <th>Voter Name</th>
+            <th>Vote Date</th>
+            <th>Vote Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for voter in voters %}
+        <tr>
+            <td>{{ voter.username }}</td>
+            <td>{{ voter.vote_date }}</td>
+            <td>{{ voter.vote_time }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    <p>No voters have participated in this election yet.</p>
+{% endif %}
+
+<a href="{{ url_for('manager_dashboard') }}">Back to Manager Dashboard</a>
+{% endblock %}

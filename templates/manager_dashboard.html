@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Manager Dashboard</h2>
+<p>Welcome, {{ session.get('username') }}!</p>
+
+<div>
+    <h3>Your Managed Elections</h3>
+    {% if elections %}
+        <ul>
+            {% for election in elections %}
+                <li>
+                    <strong>{{ election.Election_topic }}</strong><br>
+                    Start Date: {{ election.starting_date }}<br>
+                    End Date: {{ election.ending_date }}<br>
+                    Status: {{ election.status }}<br>
+                    <a href="{{ url_for('edit_election', election_id=election.elections_id) }}">Edit Election</a> |
+                    <a href="{{ url_for('manage_candidates_manager', election_id=election.elections_id) }}">Manage Candidates</a> |
+                    <a href="{{ url_for('view_voter_participation', election_id=election.elections_id) }}">View Voter Participation</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>You are not managing any elections at the moment.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

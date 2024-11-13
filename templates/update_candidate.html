@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Update Candidate</h2>
+
+<form method="POST" enctype="multipart/form-data">
+    <!-- Display any flash messages -->
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+
+    <div>
+        <label for="candidate_name">Candidate Name:</label>
+        <input type="text" id="candidate_name" name="candidate_name" value="{{ candidate['candidate_name'] }}" required>
+    </div>
+
+    <div>
+        <label for="candidate_details">Candidate Details:</label>
+        <textarea id="candidate_details" name="candidate_details" required>{{ candidate['candidate_details'] }}</textarea>
+    </div>
+
+    <div>
+        <label for="party_id">Party:</label>
+        <select id="party_id" name="party_id" required>
+            <!-- Assuming you have a list of parties to display -->
+            {% for party in parties %}
+                <option value="{{ party['party_id'] }}" {% if party['party_id'] == candidate['party_id'] %}selected{% endif %}>{{ party['party_name'] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div>
+        <label for="candidate_photo">Candidate Photo:</label>
+        <input type="file" id="candidate_photo" name="candidate_photo">
+        <p>Current Photo: 
+            {% if candidate['candidate_photo'] %}
+                <img src="{{ url_for('static', filename='uploads/candidate_photos/' + candidate['candidate_photo']) }}" alt="Candidate Photo" width="100">
+            {% else %}
+                No photo available
+            {% endif %}
+        </p>
+        
+    </div>
+
+    <div>
+        <button type="submit">Update Candidate</button>
+    </div>
+</form>
+
+<a href="{{ url_for('manage_candidates') }}">Back to Candidate Management</a>
+{% endblock %}

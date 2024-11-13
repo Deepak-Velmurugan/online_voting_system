@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Add a New Candidate</h2>
+
+<form method="POST">
+    <label for="candidate_name">Candidate Name:</label>
+    <input type="text" name="candidate_name" required><br>
+
+    <label for="candidate_details">Candidate Details:</label>
+    <textarea name="candidate_details" required></textarea><br>
+
+    <label for="party_id">Party ID:</label>
+    <input type="number" name="party_id" required><br>
+
+    <label for="election_id">Election ID:</label>
+    <input type="number" name="election_id" required><br>
+
+    <label for="candidate_photo">Candidate Photo:</label>
+    <input type="file" name="candidate_photo" required><br>
+
+    <button type="submit">Add Candidate</button>
+</form>
+{% endblock %}

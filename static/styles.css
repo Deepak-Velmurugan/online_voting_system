@@ -1,0 +1,143 @@
+/* General body and container styling (already present) */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e6e6e6;
+    color: #333;
+}
+
+nav ul {
+    background-color: #4a4a4a;
+    overflow: hidden;
+    color: #fff;
+    padding: 0;
+    text-align: center;
+    margin: 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+nav ul li {
+    display: inline-block;
+    padding: 15px 25px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #575757;
+    border-radius: 5px;
+}
+
+.container {
+    margin: 40px auto;
+    max-width: 800px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Flash messages */
+ul.flashes {
+    list-style: none;
+    padding: 10px;
+    margin: 0 0 20px;
+    background-color: #f0f4f7;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+ul.flashes li {
+    color: #333;
+}
+
+/* Form styling (already present) */
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    margin-top: 15px;
+    font-weight: bold;
+    color: #555;
+}
+
+form input, form select, form button {
+    margin-top: 8px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+form input:focus, form select:focus, form button:focus {
+    border-color: #4a90e2;
+    outline: none;
+}
+
+form button {
+    background-color: #4a90e2;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    margin-top: 15px;
+}
+
+form button:hover {
+    background-color: #357ab8;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table th, table td {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+table tr:hover {
+    background-color: #f9f9f9;
+}
+
+/* Action buttons styling */
+.actions form {
+    display: inline-block;
+    margin: 0 5px; /* Add spacing between buttons */
+}
+
+.actions button {
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #fff;
+    background-color: #4a90e2;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.actions button:hover {
+    background-color: #357ab8;
+}

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Election Details: {{ election.Election_topic }}</h2>
+
+<p><strong>Start Date:</strong> {{ election.starting_date }}</p>
+<p><strong>End Date:</strong> {{ election.ending_date }}</p>
+<p><strong>Status:</strong> {{ election.status }}</p>
+
+<h3>Candidates</h3>
+{% if candidates %}
+    <ul>
+        {% for candidate in candidates %}
+            <li>
+                {{ candidate.candidate_name }} - {{ candidate.candidate_details }}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No candidates are associated with this election.</p>
+{% endif %}
+
+<a href="{{ url_for('manager_dashboard') }}">Back to Manager Dashboard</a>
+{% endblock %}

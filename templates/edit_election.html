@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Edit Election Details</h2>
+<form method="POST" action="{{ url_for('edit_election', election_id=election.elections_id) }}">
+    <label for="election_topic">Election Topic:</label>
+    <input type="text" id="election_topic" name="election_topic" value="{{ election.Election_topic }}" required>
+
+    <label for="starting_date">Starting Date:</label>
+    <input type="date" id="starting_date" name="starting_date" value="{{ election.starting_date }}" required>
+
+    <label for="ending_date">Ending Date:</label>
+    <input type="date" id="ending_date" name="ending_date" value="{{ election.ending_date }}" required>
+
+    <label for="status">Status:</label>
+    <select id="status" name="status" required>
+        <option value="Upcoming" {% if election.status == 'Upcoming' %}selected{% endif %}>Upcoming</option>
+        <option value="Ongoing" {% if election.status == 'Ongoing' %}selected{% endif %}>Ongoing</option>
+        <option value="Completed" {% if election.status == 'Completed' %}selected{% endif %}>Completed</option>
+    </select>
+
+    <button type="submit">Update Election</button>
+</form>
+<a href="{{ url_for('manager_dashboard') }}">Back to Manager Dashboard</a>
+{% endblock %}
